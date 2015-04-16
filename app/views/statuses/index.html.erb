@@ -1,0 +1,16 @@
+
+<h1>Listing statuses</h1>
+<%= link_to "Post new status", new_status_path, class: "btn btn-success" %>
+<% @statuses.each do |status| %>
+    <div class ="status">
+      <strong><%= status.name %></strong>
+      <p><%=status.content%></p>
+      <div class="meta">
+        <%= link_to distance_of_time_in_words_to_now(status.created_at) + " ago", status %>
+        <span class="admin">
+            <%= link_to "| Edit", edit_status_path(status)%>
+            <%= link_to "| Delete", status, method: :delete, data: {confirm: "Are you sure?"} %>
+        </span>
+      </div>
+    </div>
+<%end%>
